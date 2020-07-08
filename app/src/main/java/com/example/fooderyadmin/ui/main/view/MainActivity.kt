@@ -1,4 +1,4 @@
-package com.example.fooderyadmin.ui.main
+package com.example.fooderyadmin.ui.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
