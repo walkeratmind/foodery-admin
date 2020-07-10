@@ -48,11 +48,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:padding="@dimen/padding_regular"
-            android:background="@drawable/textbox"
             android:elevation="10dp"
-            app:layout_constraintCircleRadius="@dimen/radius_regular"
+            android:padding="@dimen/padding_regular"
             app:layout_constraintBottom_toTopOf="@id/passwordInputLayout"
+            app:layout_constraintCircleRadius="@dimen/radius_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_title_view">
@@ -61,7 +60,7 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
+                android:background="@color/colorBackground"
                 android:hint="@string/email_field"
                 android:inputType="textEmailAddress"
                 android:maxLines="1" />
@@ -74,23 +73,22 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/textbox"
             android:elevation="10dp"
-            android:padding="@dimen/padding_regular"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
+            app:endIconMode="password_toggle"
             app:layout_constraintBottom_toTopOf="@id/forgetPasswordTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
+                android:background="@color/colorBackground"
+                android:hint="@string/prompt_password"
                 android:inputType="textPassword"
-                android:maxLines="1"
-                android:hint="@string/prompt_password" />
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -98,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/forgot_password"
-            android:textColor="@color/primaryTextColor"
+            android:textColor="@color/primaryColor"
             app:layout_constraintBottom_toTopOf="@+id/registerTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,14 +109,14 @@
             android:layout_height="wrap_content"
             android:text="@string/you_are_not_a_member_register"
             android:textColor="@color/primaryTextColor"
+            app:layout_constraintBottom_toTopOf="@+id/loginButtonView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/forgetPasswordTextView"
-            app:layout_constraintBottom_toTopOf="@+id/registerButtonView"
             app:layout_constraintVertical_bias="0.9" />
 
         <Button
-            android:id="@+id/registerButtonView"
+            android:id="@+id/loginButtonView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -131,9 +129,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.6"
-            app:layout_constraintTop_toBottomOf="@id/registerTextView"
-            app:layout_constraintStart_toStartOf="parent" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/registerTextView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
