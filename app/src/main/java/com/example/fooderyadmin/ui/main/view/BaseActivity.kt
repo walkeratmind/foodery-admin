@@ -6,7 +6,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 
-class BaseActivity : AppCompatActivity(){
+open class BaseActivity : AppCompatActivity(){
     private var progressBar: ProgressBar? = null
 
     fun setProgressBar(bar:ProgressBar) {

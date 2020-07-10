@@ -4,11 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.addTextChangedListener
 import com.example.fooderyadmin.R
 import com.example.fooderyadmin.data.model.Admin
 import com.example.fooderyadmin.utils.Constants
@@ -18,13 +21,16 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_register.*
+import kotlinx.android.synthetic.main.layout_register.view.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private var firebaseAuth: FirebaseAuth? = null
     private var authStateListener: FirebaseAuth.AuthStateListener? = null
-    private var dialog: AlertDialog? = null
+
+    //    private var dialog: AlertDialog? = null
     private var serverRef: DatabaseReference? = null
     private var providers: List<AuthUI.IdpConfig>? = null
 
@@ -47,6 +53,9 @@ class MainActivity : AppCompatActivity() {
 
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        setProgressBar(progressBar)
 
         init()
 //        signIn()
@@ -62,7 +71,6 @@ class MainActivity : AppCompatActivity() {
         serverRef = FirebaseDatabase.getInstance().getReference(Constants.SERVER_REF)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        dialog = MaterialAlertDialogBuilder(this).create()
 
         val user = firebaseAuth!!.currentUser
         if (user != null) {
@@ -70,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             checkAdminStatus(user)
 
         } else {
-            Log.d(Companion.TAG, "User not login")
+            Log.d(TAG, "User not login")
             //                startActivity(Intent(this, LoginActivity::class.java))
             //                finish()
             signIn()
@@ -84,7 +92,7 @@ class MainActivity : AppCompatActivity() {
 //                checkAdminStatus(user)
 //
 //            } else {
-//                Log.d(Companion.TAG, "User not login")
+//                Log.d(TAG, "User not login")
 //                //                startActivity(Intent(this, LoginActivity::class.java))
 //                //                finish()
 //                signIn()
@@ -94,11 +102,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkAdminStatus(user: FirebaseUser) {
-        dialog!!.show()
+        showProgressBar()
         serverRef!!.child(user.uid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
-                    dialog!!.dismiss()
+                    hideProgressBar()
                     Toast.makeText(this@MainActivity, " ${error.message}", Toast.LENGTH_SHORT)
                         .show()
 
@@ -108,10 +116,10 @@ class MainActivity : AppCompatActivity() {
                     if (snapshot.exists()) {
                         val adminModel = snapshot.getValue(Admin::class.java)
                         if (adminModel?.isAdmin!!) {
-                            dialog!!.dismiss()
+                            hideProgressBar()
                             goToHomeActivity(adminModel)
                         } else {
-                            dialog!!.dismiss()
+                            hideProgressBar()
                             Toast.makeText(
                                 this@MainActivity,
                                 "Already registered, Wait for approval",
@@ -121,7 +129,7 @@ class MainActivity : AppCompatActivity() {
                         }
 
                     } else {
-                        dialog!!.dismiss()
+                        hideProgressBar()
                         showRegisterDialog(user)
 
                     }
@@ -138,42 +146,58 @@ class MainActivity : AppCompatActivity() {
     private fun showRegisterDialog(user: FirebaseUser) {
         val builder = MaterialAlertDialogBuilder(this)
         builder.setTitle("Register")
-        builder.setMessage("Please submit the correct information \n Main Admin will check your request")
+        builder.setMessage("Please submit the correct information \n Admin will check your request")
 
         val itemView = LayoutInflater.from(this).inflate(R.layout.layout_register, null)
 
-        phone.setText(user.phoneNumber!!)
-        phone.isEnabled = false
+
+        if (user.displayName != null) {
+            itemView.name.setText(user.displayName!!)
+        }
+        if (user.email != null) {
+            itemView.email.setText(user.email!!)
+        }
+        if (user.phoneNumber != null) {
+            itemView.phone.setText(user.phoneNumber!!)
+        }
+
+
 
         builder.setNegativeButton("Cancel") { dialogInterface, _ -> dialogInterface.dismiss() }
             .setPositiveButton("Register") { _, _ ->
-                when {
-                    TextUtils.isEmpty(name.text) -> name.error = "please enter name"
-                    TextUtils.isEmpty(email.text) -> email.error = "please enter email"
+                if (TextUtils.isEmpty(itemView.name.text)) {
+                    itemView.name.error = "Required"
                 }
-            }
-        val admin = Admin()
-        admin.uid = user.uid
-        admin.name = name.text.toString().trim()
-        admin.email = email.text.toString().trim()
-        admin.phone = user.phoneNumber!!
-        admin.isAdmin = false // later set to true from firebase
+                if (TextUtils.isEmpty(itemView.email.text)) {
+                    itemView.email.error = "Required"
+                }
 
-        dialog!!.show()
-        serverRef!!.child(admin.uid!!)
-            .setValue(admin)
-            .addOnFailureListener { e ->
-                dialog!!.dismiss()
-                Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
+                val admin = Admin()
+                admin.uid = user.uid
+                admin.name = itemView.name.text.toString().trim()
+                admin.email = itemView.email.text.toString().trim()
+
+                admin.phone = itemView.phone.text.toString().trim()
+                admin.isAdmin = false // later set to true from firebase
+
+                showProgressBar()
+                serverRef!!.child(admin.uid!!)
+                    .setValue(admin)
+                    .addOnFailureListener { e ->
+                        hideProgressBar()
+                        Toast.makeText(this, "${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnCompleteListener { task ->
+                        hideProgressBar()
+                        Toast.makeText(
+                            this,
+                            "Registration Successful. Wait for Admin approval",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
             }
-            .addOnCompleteListener { task ->
-                dialog!!.dismiss()
-                Toast.makeText(
-                    this,
-                    "Registration Successful. Wait for Admin approval",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+
 
         builder.setView(itemView)
         val registerDialog = builder.create()
@@ -198,6 +222,8 @@ class MainActivity : AppCompatActivity() {
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK) {
                 val user = FirebaseAuth.getInstance().currentUser
+                checkAdminStatus(user!!)
+
             } else {
                 Toast.makeText(this, R.string.login_failed, Toast.LENGTH_LONG).show()
 //                Snackbar.make(, R.string.login_failed,Snackbar.LENGTH_LONG).show()
