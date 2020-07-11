@@ -12,10 +12,10 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        registerTextView.setOnClickListener(View.OnClickListener {
+        registerTextView.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
-        })
+        }
 
     }
 }

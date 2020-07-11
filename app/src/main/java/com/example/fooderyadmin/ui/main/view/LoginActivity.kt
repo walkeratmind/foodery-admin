@@ -13,10 +13,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
-        registerTextView.setOnClickListener(View.OnClickListener {
+        registerTextView.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
             finish()
-        })
+        }
 
     }
 }

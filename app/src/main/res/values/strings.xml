@@ -17,6 +17,7 @@
     <!-- Strings related to login -->
     <string name="name_field">Name</string>
     <string name="email_field">Email</string>
+    <string name="phone_field">phone</string>
     <string name="password_field">Password</string>
 
     <string name="login">Login</string>
@@ -52,9 +53,9 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="phone_field">phone</string>
+    <string name="menu_order">Orders</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_more">More</string>
 
     <string name="exit_dialog_message">Are you sure want to exit?</string>
     <string name="exit_dialog_title">Exit?</string>
