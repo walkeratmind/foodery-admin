@@ -9,17 +9,41 @@
         android:id="@+id/nav_home"
         android:name="com.example.fooderyadmin.ui.main.view.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_addItemFragment"
+            app:destination="@id/addItemFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"/>
+        <action
+            android:id="@+id/action_nav_home_to_addCategoryFragment"
+            app:destination="@id/addCategoryFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"/>
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_order"
         android:name="com.example.fooderyadmin.ui.main.view.ui.order.OrderFragment"
         android:label="@string/menu_order"
         tools:layout="@layout/fragment_order" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_profile"
         android:name="com.example.fooderyadmin.ui.main.view.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.example.fooderyadmin.ui.main.view.ui.item.AddItemFragment"
+        android:label="@string/add_item" />
+    <fragment
+        android:id="@+id/addCategoryFragment"
+        android:name="com.example.fooderyadmin.ui.main.view.ui.category.AddCategoryFragment"
+        android:label="@string/add_category"
+        tools:layout="@layout/fragment_add_category" />
 </navigation>

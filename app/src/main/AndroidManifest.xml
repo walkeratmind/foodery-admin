@@ -11,14 +11,17 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.main.view.HomeActivity"
+            android:windowSoftInputMode="adjustResize"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.main.view.RegisterActivity"
+            android:windowSoftInputMode="adjustResize"
             android:label="@string/title_activity_register"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.main.view.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan|adjustResize"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
         <activity
