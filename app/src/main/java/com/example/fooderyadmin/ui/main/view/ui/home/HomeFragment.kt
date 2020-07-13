@@ -26,9 +26,7 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
 
-        })
 
         binding.addItemButton.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_nav_home_to_addItemFragment)

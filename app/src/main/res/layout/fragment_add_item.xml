@@ -1,189 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:scrollbars="vertical">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    <data>
+
+        <variable
+            name="itemViewModel"
+            type="com.example.fooderyadmin.ui.main.view.ui.item.ItemViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        tools:context="ui.main.view.ui.item.AddItemFragment">
+        android:fillViewport="true"
+        android:scrollbars="vertical">
 
-        <ImageView
-            android:id="@+id/categoryImageView"
-            android:layout_width="0dp"
-            android:layout_height="240dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:contentDescription="@string/item_image"
-            android:scaleType="fitXY"
-            android:src="@drawable/sample_meal_image"
-            app:layout_constraintBottom_toTopOf="@id/uploadImageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            tools:context="ui.main.view.ui.item.AddItemFragment">
 
-        <TextView
-            android:id="@+id/uploadImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/upload_image"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@id/toggleButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoryImageView" />
+            <ImageView
+                android:id="@+id/categoryImageView"
+                android:layout_width="0dp"
+                android:layout_height="240dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/item_image"
+                android:scaleType="fitXY"
+                android:src="@drawable/sample_meal_image"
+                app:layout_constraintBottom_toTopOf="@id/uploadImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/toggleButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/itemTextInputLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/uploadImageView">
-
-            <Button
-                android:id="@+id/vegButtonView"
-                style="?attr/materialButtonOutlinedStyle"
+            <TextView
+                android:id="@+id/uploadImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/veg"
-                android:textAllCaps="false" />
+                android:text="@string/upload_image"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/toggleButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categoryImageView" />
 
-            <Button
-                android:id="@+id/nonVegButtonView"
-                style="?attr/materialButtonOutlinedStyle"
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/non_veg"
-                android:textAllCaps="false" />
-        </com.google.android.material.button.MaterialButtonToggleGroup>
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/itemTextInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/uploadImageView">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/itemTextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toTopOf="@id/categoryTextInputLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toggleButton">
+                <Button
+                    android:id="@+id/vegButtonView"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/veg"
+                    android:textAllCaps="false" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/itemText"
+                <Button
+                    android:id="@+id/nonVegButtonView"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/non_veg"
+                    android:textAllCaps="false" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/itemTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/item_name"
-                android:inputType="text"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toTopOf="@id/categoryTextInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toggleButton">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/categoryTextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:endIconMode="dropdown_menu"
-            app:layout_constraintBottom_toTopOf="@id/toggleButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/itemTextInputLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/itemText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/item_name"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:text="@={itemViewModel.itemName}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <AutoCompleteTextView
-                android:id="@+id/itemCategory"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/categoryTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/select_category"
-                android:inputType="textAutoComplete"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:endIconMode="dropdown_menu"
+                app:layout_constraintBottom_toTopOf="@id/toggleButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/itemTextInputLayout">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/normalPriceTextInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@id/offerPriceTextInputLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoryTextInputLayout">
+                <AutoCompleteTextView
+                    android:id="@+id/itemCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/select_category"
+                    android:inputType="textAutoComplete"
+                    android:maxLines="1"
+                    android:text="@={itemViewModel.itemCategory}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/itemNormalPrice"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/normalPriceTextInputLayout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/normal_price"
-                android:inputType="number"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toStartOf="@id/offerPriceTextInputLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categoryTextInputLayout">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/offerPriceTextInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/normalPriceTextInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/categoryTextInputLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/itemNormalPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/normal_price"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:text="@={itemViewModel.normalPrice}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/itemOfferPrice"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/offerPriceTextInputLayout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/offer_price"
-                android:inputType="number"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/normalPriceTextInputLayout"
+                app:layout_constraintTop_toBottomOf="@+id/categoryTextInputLayout">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/descriptionTextInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/offerPriceTextInputLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/itemOfferPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/offer_price"
+                    android:text="@={itemViewModel.offerPrice}"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/itemDescription"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/descriptionTextInputLayout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="top|start"
-                android:hint="@string/description"
-                android:inputType="text|textMultiLine"
-                android:lines="4"
-                android:maxLines="10"
-                android:scrollbars="vertical" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/offerPriceTextInputLayout">
 
-        <Button
-            android:id="@+id/itemSaveButton"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/btn_selector"
-            android:padding="@dimen/padding_regular"
-            android:text="@string/save"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descriptionTextInputLayout" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/itemDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|start"
+                    android:hint="@string/description"
+                    android:text="@={itemViewModel.description}"
+                    android:inputType="text|textMultiLine"
+                    android:lines="4"
+                    android:maxLines="10"
+                    android:scrollbars="vertical" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/itemSaveButton"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/btn_selector"
+                android:padding="@dimen/padding_regular"
+                android:onClick="@{() -> itemViewModel.addItem()}"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descriptionTextInputLayout" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
