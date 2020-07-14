@@ -26,7 +26,7 @@ class AddItemFragment : Fragment() {
         itemViewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
         binding.itemViewModel = itemViewModel
 
-        binding.lifecycleOwner = viewLifecycleOwner
+        binding.lifecycleOwner = this
 
         itemViewModel.isAdded.observe(viewLifecycleOwner, Observer { isItemAdded ->
             if (isItemAdded) {

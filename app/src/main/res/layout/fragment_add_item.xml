@@ -155,9 +155,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/offer_price"
-                    android:text="@={itemViewModel.offerPrice}"
                     android:inputType="number"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:text="@={itemViewModel.offerPrice}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -175,11 +175,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="top|start"
                     android:hint="@string/description"
-                    android:text="@={itemViewModel.description}"
                     android:inputType="text|textMultiLine"
                     android:lines="4"
                     android:maxLines="10"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:text="@={itemViewModel.description}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -191,8 +191,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/btn_selector"
-                android:padding="@dimen/padding_regular"
                 android:onClick="@{() -> itemViewModel.addItem()}"
+                android:padding="@dimen/padding_regular"
                 android:text="@string/save"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"

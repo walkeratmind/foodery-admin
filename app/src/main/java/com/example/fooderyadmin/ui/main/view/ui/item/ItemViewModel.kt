@@ -7,32 +7,24 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ItemViewModel : ViewModel() {
-    private val _itemName = MutableLiveData<String>("")
-    val itemName: LiveData<String>
-        get() = _itemName
-    private val _itemType = MutableLiveData<String>("Non Veg.")
-    val itemType: LiveData<String>
-        get() = _itemType
-    private val _itemCategory = MutableLiveData<String>("")
-    val itemCategory: LiveData<String>
-        get() = _itemCategory
-    private val _normalPrice = MutableLiveData<String>()
-    val normalPrice: LiveData<String>
-        get() = _normalPrice
-    private val _offerPrice = MutableLiveData<String>()
-    val offerPrice: LiveData<String>
-        get() = _offerPrice
-    private val _description = MutableLiveData<String>()
-    val description: LiveData<String>
-    get() = _description
+    val itemName = MutableLiveData<String>("")
 
-    private val _isAdded = MutableLiveData<Boolean>()
-    val isAdded: LiveData<Boolean>
-    get() = _isAdded
+    val itemType = MutableLiveData<String>("Non Veg.")
+
+    val itemCategory = MutableLiveData<String>("")
+
+    val normalPrice = MutableLiveData<String>()
+
+    val offerPrice = MutableLiveData<String>()
+    val description = MutableLiveData<String>()
+
+
+    val isAdded = MutableLiveData<Boolean>()
+
 
     init {
         Log.d(TAG, "On ItemViewModel Created")
-        _isAdded.value = false
+        isAdded.value = false
     }
 
     fun isFormValid():Boolean {
@@ -43,18 +35,18 @@ class ItemViewModel : ViewModel() {
         val db = FirebaseFirestore.getInstance()
 
         val item = hashMapOf(
-            "itemName" to _itemName.value,
+            "itemName" to itemName.value,
             "itemType" to "Non Veg.",
-            "category" to _itemCategory.value,
-            "normalPrice" to _normalPrice.value,
-            "offerPrice" to _offerPrice.value,
-            "description" to _description.value
+            "category" to itemCategory.value,
+            "normalPrice" to normalPrice.value,
+            "offerPrice" to offerPrice.value,
+            "description" to description.value
         )
         db.collection("Items")
             .add(item)
             .addOnSuccessListener { documentReference ->
                 Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-                _isAdded.value = true
+                isAdded.value = true
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error adding document", exception)
