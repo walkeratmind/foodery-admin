@@ -1,9 +1,9 @@
 package com.example.fooderyadmin.ui.main.view.ui.item
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.fooderyadmin.utils.Constants
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ItemViewModel : ViewModel() {
@@ -42,7 +42,7 @@ class ItemViewModel : ViewModel() {
             "offerPrice" to offerPrice.value,
             "description" to description.value
         )
-        db.collection("Items")
+        db.collection(Constants.ITEM_PATH)
             .add(item)
             .addOnSuccessListener { documentReference ->
                 Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")

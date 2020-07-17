@@ -30,9 +30,9 @@ class AddItemFragment : Fragment() {
 
         itemViewModel.isAdded.observe(viewLifecycleOwner, Observer { isItemAdded ->
             if (isItemAdded) {
-                Snackbar.make(binding.root, "Added", Snackbar.LENGTH_SHORT)
+                Snackbar.make(binding.root, "Added", Snackbar.LENGTH_SHORT).show()
             } else {
-                Snackbar.make(binding.root, "Fail to add Item", Snackbar.LENGTH_SHORT)
+                Snackbar.make(binding.root, "Fail to add Item", Snackbar.LENGTH_SHORT).show()
 
             }
         })

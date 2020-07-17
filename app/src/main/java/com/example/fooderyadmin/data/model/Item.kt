@@ -1,8 +1,9 @@
 package com.example.fooderyadmin.data.model
 
 data class Item (
-    var id:Int? = null,
+    var id:String? = null,
     val name:String,
+    val type: String,
     val category:String,
     val normalPrice:Int,
     val offerPrice:Int,
