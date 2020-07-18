@@ -2,18 +2,14 @@ package com.example.fooderyadmin.ui.main.view
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.core.widget.addTextChangedListener
 import com.example.fooderyadmin.R
 import com.example.fooderyadmin.data.model.Admin
+import com.example.fooderyadmin.ui.base.BaseActivity
 import com.example.fooderyadmin.utils.Constants
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
@@ -22,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_register.*
 import kotlinx.android.synthetic.main.layout_register.view.*
 
 class MainActivity : BaseActivity() {

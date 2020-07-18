@@ -1,4 +1,4 @@
-package com.example.fooderyadmin.ui.main.view
+package com.example.fooderyadmin.ui.base
 
 import android.content.Context
 import android.view.View

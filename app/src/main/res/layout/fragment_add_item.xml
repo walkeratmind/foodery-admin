@@ -53,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                style="?attr/materialButtonToggleGroupStyle"
                 app:layout_constraintBottom_toTopOf="@+id/itemTextInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

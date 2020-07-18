@@ -42,7 +42,7 @@ class ItemViewModel : ViewModel() {
             "offerPrice" to offerPrice.value,
             "description" to description.value
         )
-        db.collection(Constants.ITEM_PATH)
+        db.collection(Constants.ITEM_REF)
             .add(item)
             .addOnSuccessListener { documentReference ->
                 Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")

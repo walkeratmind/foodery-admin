@@ -20,7 +20,7 @@
     <color name="colorBackground">#F4F7F7</color>
 
     <color name="textColor">#313131</color>
-
+    <color name="windowBackground">#F3F3F3</color>
 
     <color name="colorTitle">#313131</color>
     <color name="colorCardViewBackground">#E9EAED</color>
