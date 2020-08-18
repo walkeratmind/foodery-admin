@@ -40,7 +40,8 @@
     <fragment
         android:id="@+id/addItemFragment"
         android:name="com.example.fooderyadmin.ui.main.view.ui.item.AddItemFragment"
-        android:label="@string/add_item" />
+        android:label="@string/add_item"
+        tools:layout="@layout/fragment_add_item"/>
     <fragment
         android:id="@+id/addCategoryFragment"
         android:name="com.example.fooderyadmin.ui.main.view.ui.category.AddCategoryFragment"
